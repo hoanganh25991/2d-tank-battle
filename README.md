@@ -121,10 +121,6 @@ The game uses a clean, modular architecture:
 - 🗺️ Multiple battle arenas
 - 🛡️ Power-ups and special abilities
 
-## 🤝 Contributing
-
-Feel free to fork this project and submit pull requests for improvements!
-
 ## License
 
 Copyright © 2025 Monk Journey Team. All Rights Reserved.

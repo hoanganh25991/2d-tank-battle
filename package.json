@@ -1,0 +1,60 @@
+{
+  "name": "2d-tank-battle",
+  "version": "1.0.0",
+  "description": "A thrilling browser-based 2D tank battle game built with HTML5 Canvas and JavaScript",
+  "main": "game.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "server": "node server.js",
+    "serve": "node server.js",
+    "serve-node": "node server.js",
+    "build": "echo 'No build step required for this vanilla JS game'",
+    "test": "echo 'No tests specified yet'",
+    "lint": "echo 'No linting configured yet'",
+    "clean": "echo 'No cleanup required'"
+  },
+  "keywords": [
+    "game",
+    "2d",
+    "tank",
+    "battle",
+    "html5",
+    "canvas",
+    "javascript",
+    "multiplayer",
+    "browser-game"
+  ],
+  "author": "Monk Journey Team",
+  "license": "PROPRIETARY",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hoanganh25991/2d-tank-battle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hoanganh25991/2d-tank-battle/issues"
+  },
+  "homepage": "https://github.com/hoanganh25991/2d-tank-battle#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "python": ">=3.6.0"
+  },
+  "devDependencies": {},
+  "dependencies": {},
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "files": [
+    "index.html",
+    "game.js",
+    "css/",
+    "server.py",
+    "server.js",
+    "docs/",
+    "screenshots/",
+    "README.md",
+    "LICENSE"
+  ]
+}
