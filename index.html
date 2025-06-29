@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Tank Battle</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>2D Tank Battle</h1>
+        
+        <div class="game-info">
+            <div class="player-info">
+                <div class="player1-info">
+                    <h3>Player 1 (Red)</h3>
+                    <div class="health-bar">
+                        <div class="health-fill" id="player1-health"></div>
+                    </div>
+                    <p>Health: <span id="player1-health-text">100</span></p>
+                </div>
+                
+                <div class="player2-info">
+                    <h3>Player 2 (Blue)</h3>
+                    <div class="health-bar">
+                        <div class="health-fill" id="player2-health"></div>
+                    </div>
+                    <p>Health: <span id="player2-health-text">100</span></p>
+                </div>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="800" height="600"></canvas>
+        
+        <div class="controls">
+            <div class="control-section">
+                <h3>Player 1 (Red Tank)</h3>
+                <p>Move: WASD</p>
+                <p>Rotate: Q (left) / E (right)</p>
+                <p>Shoot: SPACE</p>
+            </div>
+            
+            <div class="control-section">
+                <h3>Player 2 (Blue Tank)</h3>
+                <p>Move: Arrow Keys</p>
+                <p>Rotate: Z (left) / X (right)</p>
+                <p>Shoot: ENTER</p>
+            </div>
+        </div>
+        
+        <div class="game-over" id="gameOver" style="display: none;">
+            <h2 id="winnerText">Game Over</h2>
+            <button onclick="restartGame()">Play Again</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
