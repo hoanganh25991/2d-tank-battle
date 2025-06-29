@@ -2,7 +2,7 @@
 
 A thrilling browser-based 2D tank battle game built with HTML5 Canvas and JavaScript. Battle your friend in intense tank-to-tank combat!
 
-![Game Preview](https://via.placeholder.com/800x400/2c3e50/ecf0f1?text=2D+Tank+Battle+Game)
+![tank battle](screenshots/2d-tank-battle-151303-20250629.jpeg)
 
 ## ✨ Features
 
@@ -69,8 +69,9 @@ npm run dev
 
 ```
 2d-tank-battle/
-├── 📄 index.html          # Main HTML file
-├── 🎨 styles.css          # Game styling
+├── 📄 index.html         # Main HTML file
+├── 🎨 css                # Game styling
+│   └── styles.css
 ├── ⚙️ game.js            # Game logic and classes
 ├── 🐍 server.py          # Development server
 ├── 📦 package.json       # Project configuration
