@@ -240,13 +240,16 @@ class Tank {
         this.handleMovementAndRotation(keys, obstacles, canvasWidth, canvasHeight);
     }
     
-    handleMovement(keys, obstacles, canvasWidth, canvasHeight) {
+    handleMovementAndRotation(keys, obstacles, canvasWidth, canvasHeight) {
         let deltaX = 0;
         let deltaY = 0;
+        let shouldRotate = false;
         
-        // Calculate movement delta based on input
+        // Player 1 controls (WASD)
         if (this.owner === 'player1') {
-            // Player 1 movement (WASD) - move in facing direction
+            const isMovingForwardBackward = keys['KeyW'] || keys['KeyS'];
+            
+            // Forward/Backward movement
             if (keys['KeyW']) {
                 deltaX += Math.cos(this.angle) * this.speed;
                 deltaY += Math.sin(this.angle) * this.speed;
@@ -255,18 +258,37 @@ class Tank {
                 deltaX -= Math.cos(this.angle) * this.speed;
                 deltaY -= Math.sin(this.angle) * this.speed;
             }
+            
+            // Left/Right - steering when moving, rotation when stationary
             if (keys['KeyA']) {
-                deltaX += Math.cos(this.angle - Math.PI / 2) * this.speed;
-                deltaY += Math.sin(this.angle - Math.PI / 2) * this.speed;
+                if (isMovingForwardBackward) {
+                    // Steering while moving - rotate tank
+                    this.angle -= this.rotationSpeed;
+                    shouldRotate = true;
+                } else {
+                    // Stationary rotation (like old Q key)
+                    this.angle -= this.rotationSpeed;
+                    shouldRotate = true;
+                }
             }
             if (keys['KeyD']) {
-                deltaX += Math.cos(this.angle + Math.PI / 2) * this.speed;
-                deltaY += Math.sin(this.angle + Math.PI / 2) * this.speed;
+                if (isMovingForwardBackward) {
+                    // Steering while moving - rotate tank
+                    this.angle += this.rotationSpeed;
+                    shouldRotate = true;
+                } else {
+                    // Stationary rotation (like old E key)
+                    this.angle += this.rotationSpeed;
+                    shouldRotate = true;
+                }
             }
         }
         
+        // Player 2 controls (Arrow keys)
         if (this.owner === 'player2') {
-            // Player 2 movement (Arrow keys) - move in facing direction
+            const isMovingForwardBackward = keys['ArrowUp'] || keys['ArrowDown'];
+            
+            // Forward/Backward movement
             if (keys['ArrowUp']) {
                 deltaX += Math.cos(this.angle) * this.speed;
                 deltaY += Math.sin(this.angle) * this.speed;
@@ -275,34 +297,57 @@ class Tank {
                 deltaX -= Math.cos(this.angle) * this.speed;
                 deltaY -= Math.sin(this.angle) * this.speed;
             }
+            
+            // Left/Right - steering when moving, rotation when stationary
             if (keys['ArrowLeft']) {
-                deltaX += Math.cos(this.angle - Math.PI / 2) * this.speed;
-                deltaY += Math.sin(this.angle - Math.PI / 2) * this.speed;
+                if (isMovingForwardBackward) {
+                    // Steering while moving - rotate tank
+                    this.angle -= this.rotationSpeed;
+                    shouldRotate = true;
+                } else {
+                    // Stationary rotation (like old Z key)
+                    this.angle -= this.rotationSpeed;
+                    shouldRotate = true;
+                }
             }
             if (keys['ArrowRight']) {
-                deltaX += Math.cos(this.angle + Math.PI / 2) * this.speed;
-                deltaY += Math.sin(this.angle + Math.PI / 2) * this.speed;
+                if (isMovingForwardBackward) {
+                    // Steering while moving - rotate tank
+                    this.angle += this.rotationSpeed;
+                    shouldRotate = true;
+                } else {
+                    // Stationary rotation (like old X key)
+                    this.angle += this.rotationSpeed;
+                    shouldRotate = true;
+                }
             }
         }
         
-        // If no movement input, return early
-        if (deltaX === 0 && deltaY === 0) {
-            return;
-        }
-        
-        // Try to move on X-axis first
-        if (deltaX !== 0) {
-            const newX = this.x + deltaX;
-            if (this.canMoveTo(newX, this.y, obstacles, canvasWidth, canvasHeight)) {
-                this.x = newX;
+        // Keep angle in reasonable range
+        if (shouldRotate) {
+            if (this.angle > Math.PI * 2) {
+                this.angle -= Math.PI * 2;
+            } else if (this.angle < 0) {
+                this.angle += Math.PI * 2;
             }
         }
         
-        // Try to move on Y-axis second
-        if (deltaY !== 0) {
-            const newY = this.y + deltaY;
-            if (this.canMoveTo(this.x, newY, obstacles, canvasWidth, canvasHeight)) {
-                this.y = newY;
+        // Apply movement if there's any
+        if (deltaX !== 0 || deltaY !== 0) {
+            // Try to move on X-axis first
+            if (deltaX !== 0) {
+                const newX = this.x + deltaX;
+                if (this.canMoveTo(newX, this.y, obstacles, canvasWidth, canvasHeight)) {
+                    this.x = newX;
+                }
+            }
+            
+            // Try to move on Y-axis second
+            if (deltaY !== 0) {
+                const newY = this.y + deltaY;
+                if (this.canMoveTo(this.x, newY, obstacles, canvasWidth, canvasHeight)) {
+                    this.y = newY;
+                }
             }
         }
     }

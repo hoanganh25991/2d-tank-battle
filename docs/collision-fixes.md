@@ -1,4 +1,4 @@
-# Collision Detection Fixes
+# Collision Detection & Control System Improvements
 
 ## Issues Fixed
 
@@ -77,13 +77,41 @@ escapeFromWall(obstacles, canvasWidth, canvasHeight) {
 }
 ```
 
+### 3. Improved Control System
+**Problem**: Controls required too many keys (Q/E for Player 1, Z/X for Player 2) and weren't intuitive.
+
+**Solution**:
+- Integrated steering/rotation into existing movement keys
+- A/D (Player 1) and Left/Right arrows (Player 2) now act as:
+  - **Steering** when moving forward/backward (W/S or Up/Down)
+  - **Rotation** when stationary
+- Eliminated need for separate rotation keys (Q/E/Z/X)
+
+## New Control Scheme
+
+### Player 1 (Red Tank)
+- **W**: Move forward
+- **S**: Move backward  
+- **A**: Steer left (while moving) / Rotate left (when stationary)
+- **D**: Steer right (while moving) / Rotate right (when stationary)
+- **SPACE**: Shoot
+
+### Player 2 (Blue Tank)
+- **Up Arrow**: Move forward
+- **Down Arrow**: Move backward
+- **Left Arrow**: Steer left (while moving) / Rotate left (when stationary)  
+- **Right Arrow**: Steer right (while moving) / Rotate right (when stationary)
+- **ENTER**: Shoot
+
 ## Benefits
 
 1. **No More Spawn Collisions**: Tanks always start in safe positions
 2. **Smooth Wall Interaction**: Tanks can slide along walls instead of getting stuck
 3. **Automatic Recovery**: Stuck tanks automatically escape to safe positions
-4. **Better Player Experience**: More responsive and predictable movement
-5. **Robust System**: Multiple fallback mechanisms prevent edge cases
+4. **Intuitive Controls**: Natural tank-like steering behavior
+5. **Simplified Control Scheme**: Fewer keys needed, more intuitive gameplay
+6. **Better Player Experience**: More responsive and predictable movement
+7. **Robust System**: Multiple fallback mechanisms prevent edge cases
 
 ## Performance Considerations
 
